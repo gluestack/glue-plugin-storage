@@ -1,6 +1,6 @@
 const { SpawnHelper, DockerodeHelper } = require("@gluestack/helpers");
 import IApp from "@gluestack/framework/types/app/interface/IApp";
-import IContainerController from "@gluestack/framework/types/plugin/interface/IContainerController";
+import IContainerController, { IRoutes } from "@gluestack/framework/types/plugin/interface/IContainerController";
 import { PluginInstance } from "./PluginInstance";
 const { GlobalEnv } = require("@gluestack/helpers");
 
@@ -43,7 +43,7 @@ export class PluginInstanceContainerController implements IContainerController {
   }
 
   async getEnv() {
-    const minioEnv:any = await this.callerInstance
+    const minioEnv: any = await this.callerInstance
       .getMinioInstance()
       .getContainerController()
       .getEnv();
@@ -117,7 +117,7 @@ export class PluginInstanceContainerController implements IContainerController {
     return (this.containerId = containerId || null);
   }
 
-  getConfig(): any {}
+  getConfig(): any { }
 
   async up() {
     return;
@@ -214,5 +214,14 @@ export class PluginInstanceContainerController implements IContainerController {
 
   async build() {
     //
+  }
+
+  async getRoutes(): Promise<IRoutes[]> {
+    const routes: IRoutes[] = [
+      { method: "POST", path: "/upload" },
+      { method: "GET", path: "/get/{id}" }
+    ];
+
+    return Promise.resolve(routes);
   }
 }

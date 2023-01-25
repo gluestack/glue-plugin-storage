@@ -17,6 +17,5 @@ const upload = multer({
 
 router.post("/upload", upload.single("file"), Controller.upload);
 router.get("/get/:id", Controller.get);
-// router.get("/file/:path", Controller.file); //deprecated api
 
 export default router;

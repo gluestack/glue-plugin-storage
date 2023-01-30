@@ -1,10 +1,10 @@
 module.exports = () => [
   {
-    "path": "/backend/services/upload",
+    "path": "/backend/services/upload/(.*)",
     "size_in_mb": 100,
     "proxy": {
       "instance": "services:3500",
-      "path": "/v1.0/invoke/services/method/upload",
+      "path": "/v1.0/invoke/services/method/upload/$1",
     },
   },
   {

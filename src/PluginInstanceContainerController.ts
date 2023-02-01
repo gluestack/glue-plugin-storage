@@ -42,6 +42,10 @@ export class PluginInstanceContainerController implements IContainerController {
     return ["npm", "run", "dev"];
   }
 
+  buildScript() {
+    return ["npm", "run", "build"];
+  }
+
   async getEnv() {
     const minioEnv: any = await this.callerInstance
       .getMinioInstance()
@@ -213,7 +217,15 @@ export class PluginInstanceContainerController implements IContainerController {
   }
 
   async build() {
-    //
+    await SpawnHelper.run(
+      this.callerInstance.getInstallationPath(),
+      this.installScript()
+    ).then(async () => {
+      await SpawnHelper.run(
+        this.callerInstance.getInstallationPath(),
+        this.buildScript()
+      );
+    });
   }
 
   async getRoutes(): Promise<IRoutes[]> {

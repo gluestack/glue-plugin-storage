@@ -75,6 +75,9 @@ var PluginInstanceContainerController = (function () {
     PluginInstanceContainerController.prototype.runScript = function () {
         return ["npm", "run", "dev"];
     };
+    PluginInstanceContainerController.prototype.buildScript = function () {
+        return ["npm", "run", "build"];
+    };
     PluginInstanceContainerController.prototype.getEnv = function () {
         return __awaiter(this, void 0, void 0, function () {
             var minioEnv, env, _a, _b, _c, _i, key, _d, _e, _f, _g, _h;
@@ -240,8 +243,23 @@ var PluginInstanceContainerController = (function () {
     };
     PluginInstanceContainerController.prototype.build = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
             return __generator(this, function (_a) {
-                return [2];
+                switch (_a.label) {
+                    case 0: return [4, SpawnHelper.run(this.callerInstance.getInstallationPath(), this.installScript()).then(function () { return __awaiter(_this, void 0, void 0, function () {
+                            return __generator(this, function (_a) {
+                                switch (_a.label) {
+                                    case 0: return [4, SpawnHelper.run(this.callerInstance.getInstallationPath(), this.buildScript())];
+                                    case 1:
+                                        _a.sent();
+                                        return [2];
+                                }
+                            });
+                        }); })];
+                    case 1:
+                        _a.sent();
+                        return [2];
+                }
             });
         });
     };

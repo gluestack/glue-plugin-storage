@@ -220,12 +220,11 @@ export class PluginInstanceContainerController implements IContainerController {
     await SpawnHelper.run(
       this.callerInstance.getInstallationPath(),
       this.installScript()
-    ).then(async () => {
-      await SpawnHelper.run(
-        this.callerInstance.getInstallationPath(),
-        this.buildScript()
-      );
-    });
+    );
+    await SpawnHelper.run(
+      this.callerInstance.getInstallationPath(),
+      this.buildScript()
+    );
   }
 
   async getRoutes(): Promise<IRoutes[]> {

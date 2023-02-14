@@ -98,24 +98,23 @@ var GlueStackPlugin = (function () {
                         return [4, this.app.createPluginInstance(this, instanceName, this.getTemplateFolderPath(), target)];
                     case 4:
                         storageInstance = _a.sent();
-                        if (!storageInstance) return [3, 7];
+                        if (!storageInstance) return [3, 9];
                         return [4, (0, attachMinioInstance_1.attachMinioInstance)(storageInstance, minioInstances)];
                     case 5:
                         _a.sent();
                         return [4, (0, attachGraphqlInstance_1.attachGraphqlInstance)(storageInstance, graphqlInstances)];
                     case 6:
                         _a.sent();
-                        _a.label = 7;
-                    case 7:
                         pluginPackage = "".concat(storageInstance.getInstallationPath(), "/package.json");
                         return [4, (0, reWriteFile_1["default"])(pluginPackage, instanceName, 'INSTANCENAME')];
-                    case 8:
+                    case 7:
                         _a.sent();
                         rootPackage = "".concat(process.cwd(), "/package.json");
                         return [4, (0, update_workspaces_1.updateWorkspaces)(rootPackage, storageInstance.getInstallationPath())];
-                    case 9:
+                    case 8:
                         _a.sent();
-                        return [2];
+                        _a.label = 9;
+                    case 9: return [2];
                 }
             });
         });

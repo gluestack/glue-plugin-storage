@@ -86,15 +86,15 @@ export class GlueStackPlugin implements IPlugin, IManagesInstances, ILifeCycle {
     if (storageInstance) {
       await attachMinioInstance(storageInstance, minioInstances);
       await attachGraphqlInstance(storageInstance, graphqlInstances);
+
+      // update package.json'S name index with the new instance name
+      const pluginPackage = `${storageInstance.getInstallationPath()}/package.json`;
+      await reWriteFile(pluginPackage, instanceName, 'INSTANCENAME');
+
+      // update root package.json's workspaces with the new instance name
+      const rootPackage = `${process.cwd()}/package.json`;
+      await updateWorkspaces(rootPackage, storageInstance.getInstallationPath());
     }
-
-    // update package.json'S name index with the new instance name
-    const pluginPackage = `${storageInstance.getInstallationPath()}/package.json`;
-    await reWriteFile(pluginPackage, instanceName, 'INSTANCENAME');
-
-    // update root package.json's workspaces with the new instance name
-    const rootPackage = `${process.cwd()}/package.json`;
-    await updateWorkspaces(rootPackage, storageInstance.getInstallationPath());
   }
 
   async checkAlreadyInstalled() {

@@ -44,7 +44,7 @@ var prompts = require("prompts");
 var writeEnv_1 = require("./helpers/writeEnv");
 var copyToGraphql_1 = require("./helpers/copyToGraphql");
 var reWriteFile_1 = __importDefault(require("./helpers/reWriteFile"));
-var replaceSpecialChars_1 = require("./helpers/replaceSpecialChars");
+var removeSpecialChars = require("@gluestack/helpers").removeSpecialChars;
 var setGraphqlConfig = function (storageInstance, graphqlInstance) { return __awaiter(void 0, void 0, void 0, function () {
     return __generator(this, function (_a) {
         storageInstance.gluePluginStore.set("graphql_instance", graphqlInstance.getName());
@@ -98,7 +98,7 @@ function attachGraphqlInstance(storageInstance, graphqlInstances) {
                 case 4:
                     _a.sent();
                     routerFilePath = "".concat(storageInstance.getInstallationPath(), "/router.js");
-                    return [4, (0, reWriteFile_1["default"])(routerFilePath, (0, replaceSpecialChars_1.replaceSpecialChars)(storageInstance.getName()), "services")];
+                    return [4, (0, reWriteFile_1["default"])(routerFilePath, removeSpecialChars(storageInstance.getName()), "services")];
                 case 5:
                     _a.sent();
                     _a.label = 6;

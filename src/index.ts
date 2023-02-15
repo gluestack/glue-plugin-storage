@@ -13,7 +13,7 @@ import { PluginInstance as GraphqlPluginInstance } from "@gluestack/glue-plugin-
 import { PluginInstance as MinioPluginInstance } from "@gluestack/glue-plugin-minio/src/PluginInstance";
 import { attachGraphqlInstance } from "./attachGraphqlInstance";
 import reWriteFile from "./helpers/reWriteFile";
-import { updateWorkspaces } from "./helpers/update-workspaces";
+const { Workspaces } = require("@gluestack/helpers");
 
 //Do not edit the name of this class
 export class GlueStackPlugin implements IPlugin, IManagesInstances, ILifeCycle {
@@ -93,7 +93,7 @@ export class GlueStackPlugin implements IPlugin, IManagesInstances, ILifeCycle {
 
       // update root package.json's workspaces with the new instance name
       const rootPackage = `${process.cwd()}/package.json`;
-      await updateWorkspaces(rootPackage, storageInstance.getInstallationPath());
+      await Workspaces.append(rootPackage, storageInstance.getInstallationPath());
     }
   }
 

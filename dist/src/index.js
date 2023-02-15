@@ -45,7 +45,7 @@ var PluginInstance_1 = require("./PluginInstance");
 var attachMinioInstance_1 = require("./attachMinioInstance");
 var attachGraphqlInstance_1 = require("./attachGraphqlInstance");
 var reWriteFile_1 = __importDefault(require("./helpers/reWriteFile"));
-var update_workspaces_1 = require("./helpers/update-workspaces");
+var Workspaces = require("@gluestack/helpers").Workspaces;
 var GlueStackPlugin = (function () {
     function GlueStackPlugin(app, gluePluginStore) {
         this.type = "stateless";
@@ -110,7 +110,7 @@ var GlueStackPlugin = (function () {
                     case 7:
                         _a.sent();
                         rootPackage = "".concat(process.cwd(), "/package.json");
-                        return [4, (0, update_workspaces_1.updateWorkspaces)(rootPackage, storageInstance.getInstallationPath())];
+                        return [4, Workspaces.append(rootPackage, storageInstance.getInstallationPath())];
                     case 8:
                         _a.sent();
                         _a.label = 9;

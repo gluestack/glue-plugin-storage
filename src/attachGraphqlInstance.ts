@@ -6,7 +6,7 @@ import { PluginInstance as GraphqlPluginInstance } from "@gluestack/glue-plugin-
 import { writeEnv } from "./helpers/writeEnv";
 import { copyToGraphql } from "./helpers/copyToGraphql";
 import reWriteFile from "./helpers/reWriteFile";
-import { replaceSpecialChars } from "./helpers/replaceSpecialChars";
+const { removeSpecialChars } = require("@gluestack/helpers");
 
 export const setGraphqlConfig = async (
   storageInstance: PluginInstance,
@@ -58,7 +58,7 @@ export async function attachGraphqlInstance(
     const routerFilePath = `${storageInstance.getInstallationPath()}/router.js`;
     await reWriteFile(
       routerFilePath,
-      replaceSpecialChars(storageInstance.getName()),
+      removeSpecialChars(storageInstance.getName()),
       "services",
     );
   }

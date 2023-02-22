@@ -13,7 +13,8 @@ import { PluginInstance as GraphqlPluginInstance } from "@gluestack/glue-plugin-
 import { PluginInstance as MinioPluginInstance } from "@gluestack/glue-plugin-minio/src/PluginInstance";
 import { attachGraphqlInstance } from "./attachGraphqlInstance";
 import reWriteFile from "./helpers/reWriteFile";
-const { Workspaces } = require("@gluestack/helpers");
+import { join } from "path";
+const { createFolder, writeFile, Workspaces } = require("@gluestack/helpers");
 
 //Do not edit the name of this class
 export class GlueStackPlugin implements IPlugin, IManagesInstances, ILifeCycle {
@@ -84,6 +85,9 @@ export class GlueStackPlugin implements IPlugin, IManagesInstances, ILifeCycle {
     );
 
     if (storageInstance) {
+      await createFolder(join(storageInstance.getInstallationPath(), 'components'));
+      await writeFile(join(storageInstance.getInstallationPath(), 'components', 'function.yaml'), '');
+
       await attachMinioInstance(storageInstance, minioInstances);
       await attachGraphqlInstance(storageInstance, graphqlInstances);
 

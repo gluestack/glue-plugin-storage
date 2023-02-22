@@ -45,7 +45,8 @@ var PluginInstance_1 = require("./PluginInstance");
 var attachMinioInstance_1 = require("./attachMinioInstance");
 var attachGraphqlInstance_1 = require("./attachGraphqlInstance");
 var reWriteFile_1 = __importDefault(require("./helpers/reWriteFile"));
-var Workspaces = require("@gluestack/helpers").Workspaces;
+var path_1 = require("path");
+var _a = require("@gluestack/helpers"), createFolder = _a.createFolder, writeFile = _a.writeFile, Workspaces = _a.Workspaces;
 var GlueStackPlugin = (function () {
     function GlueStackPlugin(app, gluePluginStore) {
         this.type = "stateless";
@@ -98,23 +99,29 @@ var GlueStackPlugin = (function () {
                         return [4, this.app.createPluginInstance(this, instanceName, this.getTemplateFolderPath(), target)];
                     case 4:
                         storageInstance = _a.sent();
-                        if (!storageInstance) return [3, 9];
-                        return [4, (0, attachMinioInstance_1.attachMinioInstance)(storageInstance, minioInstances)];
+                        if (!storageInstance) return [3, 11];
+                        return [4, createFolder((0, path_1.join)(storageInstance.getInstallationPath(), 'components'))];
                     case 5:
                         _a.sent();
-                        return [4, (0, attachGraphqlInstance_1.attachGraphqlInstance)(storageInstance, graphqlInstances)];
+                        return [4, writeFile((0, path_1.join)(storageInstance.getInstallationPath(), 'components', 'function.yaml'), '')];
                     case 6:
+                        _a.sent();
+                        return [4, (0, attachMinioInstance_1.attachMinioInstance)(storageInstance, minioInstances)];
+                    case 7:
+                        _a.sent();
+                        return [4, (0, attachGraphqlInstance_1.attachGraphqlInstance)(storageInstance, graphqlInstances)];
+                    case 8:
                         _a.sent();
                         pluginPackage = "".concat(storageInstance.getInstallationPath(), "/package.json");
                         return [4, (0, reWriteFile_1["default"])(pluginPackage, instanceName, 'INSTANCENAME')];
-                    case 7:
+                    case 9:
                         _a.sent();
                         rootPackage = "".concat(process.cwd(), "/package.json");
                         return [4, Workspaces.append(rootPackage, storageInstance.getInstallationPath())];
-                    case 8:
+                    case 10:
                         _a.sent();
-                        _a.label = 9;
-                    case 9: return [2];
+                        _a.label = 11;
+                    case 11: return [2];
                 }
             });
         });

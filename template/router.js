@@ -12,7 +12,7 @@ module.exports = () => [
     "path": "/backend/services/upload",
     "size_in_mb": process.env.MAX_UPLOAD_SIZE || 100,
     "proxy": {
-      "instance": "services:9090",
+      "instance": "services:9000",
       "path": "/upload",
     },
   },

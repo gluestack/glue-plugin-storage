@@ -5,3 +5,4 @@ node_modules
 *.lock
 meta/
 yarn-error.log
+lib

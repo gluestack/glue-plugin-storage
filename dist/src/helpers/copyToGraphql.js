@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.copyToGraphql = void 0;
 function copyToGraphql(storageInstance, graphqlInstance) {
     return __awaiter(this, void 0, void 0, function () {
@@ -55,8 +55,8 @@ function copyToGraphql(storageInstance, graphqlInstance) {
                                 type: "pg_track_table",
                                 args: {
                                     source: graphqlInstance.getDbName(),
-                                    table: "files",
-                                },
+                                    table: "files"
+                                }
                             },
                             {
                                 type: "pg_create_insert_permission",
@@ -66,11 +66,11 @@ function copyToGraphql(storageInstance, graphqlInstance) {
                                     role: graphqlJson["HASURA_GRAPHQL_UNAUTHORIZED_ROLE"],
                                     permission: {
                                         check: {},
-                                        columns: "*",
-                                    },
-                                },
+                                        columns: "*"
+                                    }
+                                }
                             }
-                        ],
+                        ]
                     };
                     return [4, graphqlInstance.copyTrackJson("public_files.json", trackJson)];
                 case 3:

@@ -1,6 +1,6 @@
 {
     "name": "@gluestack/glue-plugin-storage",
-    "version": "0.0.49",
+    "version": "0.0.50",
     "description": "storage plugin for gluestack",
     "repository": {
         "type": "git",

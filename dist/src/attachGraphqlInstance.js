@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.attachGraphqlInstance = exports.setGraphqlConfig = void 0;
 var prompts = require("prompts");
 var writeEnv_1 = require("./helpers/writeEnv");
@@ -63,14 +63,14 @@ function selectGraphqlInstance(graphqlInstances) {
                         return {
                             title: "".concat(graphqlInstance.getName()),
                             description: "Will attach graphql \"".concat(graphqlInstance.getName(), "\""),
-                            value: graphqlInstance,
+                            value: graphqlInstance
                         };
                     });
                     return [4, prompts({
                             type: "select",
                             name: "value",
                             message: "Select a graphql instance",
-                            choices: choices,
+                            choices: choices
                         })];
                 case 1:
                     value = (_a.sent()).value;
@@ -90,35 +90,35 @@ function getMiddlwareConfig() {
                         {
                             title: "No auth",
                             description: "No authentication required.",
-                            value: "no-auth",
+                            value: "no-auth"
                         },
                         {
                             title: "Shared token auth",
                             description: "Shared key based authentication.",
-                            value: "shared-token-auth",
+                            value: "shared-token-auth"
                         },
                         {
                             title: "JWT auth",
                             description: "JWT token based authentication.",
-                            value: "jwt-auth",
+                            value: "jwt-auth"
                         },
                         {
                             title: "Webhook auth",
                             description: "Webhook mode for authentication by specifying a URL.",
-                            value: "webhook-auth",
+                            value: "webhook-auth"
                         },
                     ];
                     return [4, prompts({
                             type: "select",
                             name: "value",
                             message: "Select private files authentication method",
-                            choices: choices,
+                            choices: choices
                         })];
                 case 1:
                     value = (_a.sent()).value;
                     defaultOptions = {
                         sharedToken: "shared-secret",
-                        webhookUrl: "https://<your-custom-webhook-url>/",
+                        webhookUrl: "https://<your-custom-webhook-url>/"
                     };
                     key = defaultOptions.sharedToken;
                     url = defaultOptions.webhookUrl;
@@ -128,7 +128,7 @@ function getMiddlwareConfig() {
                             type: "text",
                             name: "key",
                             message: "What would be your shared key?",
-                            initial: defaultOptions.sharedToken,
+                            initial: defaultOptions.sharedToken
                         })];
                 case 2:
                     response = _a.sent();
@@ -140,7 +140,7 @@ function getMiddlwareConfig() {
                             type: "text",
                             name: "url",
                             message: "What would be your webhook URL?",
-                            initial: defaultOptions.webhookUrl,
+                            initial: defaultOptions.webhookUrl
                         })];
                 case 4:
                     response = _a.sent();
@@ -176,7 +176,7 @@ function attachGraphqlInstance(storageInstance, graphqlInstances) {
                 case 5:
                     _a.sent();
                     routerFilePath = "".concat(storageInstance.getInstallationPath(), "/router.js");
-                    return [4, (0, reWriteFile_1.default)(routerFilePath, removeSpecialChars(storageInstance.getName()), "services")];
+                    return [4, (0, reWriteFile_1["default"])(routerFilePath, removeSpecialChars(storageInstance.getName()), "services")];
                 case 6:
                     _a.sent();
                     _a.label = 7;

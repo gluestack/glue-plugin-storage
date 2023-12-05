@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.npmInstall = void 0;
 var SpawnHelper = require("@gluestack/helpers").SpawnHelper;
 function installScript() {
@@ -13,8 +13,7 @@ function npmInstall(pluginInstance) {
         SpawnHelper.start(pluginInstance.getInstallationPath(), installScript())
             .then(function (resp) {
             return resolve(true);
-        })
-            .catch(function (e) {
+        })["catch"](function (e) {
             return reject(e);
         });
     });

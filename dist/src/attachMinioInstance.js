@@ -35,7 +35,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 exports.attachMinioInstance = exports.setMinioConfig = void 0;
 var prompts = require("prompts");
 var setMinioConfig = function (storageInstance, minioInstance) { return __awaiter(void 0, void 0, void 0, function () {
@@ -55,14 +55,14 @@ function selectMinioInstance(minioInstances) {
                         return {
                             title: "".concat(instance.getName()),
                             description: "Will attach minio storage running on port \"".concat(instance.getContainerController().portNumber, "\""),
-                            value: instance,
+                            value: instance
                         };
                     });
                     return [4, prompts({
                             type: "select",
                             name: "value",
                             message: "Select an instance",
-                            choices: choices,
+                            choices: choices
                         })];
                 case 1:
                     value = (_a.sent()).value;
